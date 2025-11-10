@@ -1,0 +1,16 @@
+2025-11-10 14:58:31,477 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 14:58:31,477 - app.main - INFO - Initializing database...
+2025-11-10 14:58:31,477 - app.main - INFO - Database initialized successfully
+2025-11-10 14:58:31,478 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 14:58:31,478 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 14:58:31,510 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 14:58:31,510 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 14:58:31,514 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 14:58:31,526 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 14:58:31,527 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 14:58:31,528 - app.main - INFO - Scheduler started successfully
+2025-11-10 14:58:31,528 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 14:58:35,829 - app.main - INFO - Shutting down application...
+2025-11-10 14:58:35,829 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 14:58:35,830 - app.main - INFO - Scheduler stopped
+2025-11-10 14:58:35,830 - app.main - INFO - Application shutdown complete
