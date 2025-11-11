@@ -30,3 +30,207 @@
 2025-11-10 15:30:13,493 - apscheduler.scheduler - INFO - Scheduler has been shut down
 2025-11-10 15:30:13,494 - app.main - INFO - Scheduler stopped
 2025-11-10 15:30:13,495 - app.main - INFO - Application shutdown complete
+2025-11-10 15:30:18,733 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:30:18,734 - app.main - INFO - Initializing database...
+2025-11-10 15:30:18,734 - app.main - INFO - Database initialized successfully
+2025-11-10 15:30:18,735 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:30:18,735 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:30:18,769 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:30:18,770 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:30:18,774 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:30:18,775 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:30:18,775 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:30:18,776 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:30:18,776 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:33:30,358 - app.main - INFO - Shutting down application...
+2025-11-10 15:33:30,358 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:33:30,360 - app.main - INFO - Scheduler stopped
+2025-11-10 15:33:30,360 - app.main - INFO - Application shutdown complete
+2025-11-10 15:33:33,500 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:33:33,501 - app.main - INFO - Initializing database...
+2025-11-10 15:33:33,501 - app.main - INFO - Database initialized successfully
+2025-11-10 15:33:33,501 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:33:33,502 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:33:33,545 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:33:33,545 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:33:33,549 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:33:33,550 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:33:33,550 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:33:33,551 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:33:33,551 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:34:04,523 - app.main - INFO - Shutting down application...
+2025-11-10 15:34:04,524 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:34:04,526 - app.main - INFO - Scheduler stopped
+2025-11-10 15:34:04,526 - app.main - INFO - Application shutdown complete
+2025-11-10 15:34:09,900 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:34:09,902 - app.main - INFO - Initializing database...
+2025-11-10 15:34:09,928 - app.main - INFO - Database initialized successfully
+2025-11-10 15:34:09,930 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:34:09,931 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:34:10,003 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:34:10,004 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:34:10,013 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:34:10,015 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:34:10,016 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:34:10,019 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:34:10,020 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:34:45,603 - app.main - INFO - Shutting down application...
+2025-11-10 15:34:45,604 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:34:45,606 - app.main - INFO - Scheduler stopped
+2025-11-10 15:34:45,607 - app.main - INFO - Application shutdown complete
+2025-11-10 15:34:50,829 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:34:50,829 - app.main - INFO - Initializing database...
+2025-11-10 15:34:50,838 - app.main - INFO - Database initialized successfully
+2025-11-10 15:34:50,840 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:34:50,840 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:34:50,872 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:34:50,873 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:34:50,877 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:34:50,878 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:34:50,878 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:34:50,879 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:34:50,880 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:36:02,107 - app.main - INFO - Shutting down application...
+2025-11-10 15:36:02,108 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:36:02,110 - app.main - INFO - Scheduler stopped
+2025-11-10 15:36:02,111 - app.main - INFO - Application shutdown complete
+2025-11-10 15:42:32,956 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:42:32,956 - app.main - INFO - Initializing database...
+2025-11-10 15:42:32,965 - app.main - INFO - Database initialized successfully
+2025-11-10 15:42:32,966 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:42:32,966 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:42:33,000 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:42:33,000 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:42:33,003 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:42:33,003 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:42:33,004 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:42:33,005 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:42:33,005 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:47:21,371 - app.main - INFO - Shutting down application...
+2025-11-10 15:47:21,372 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:47:21,373 - app.main - INFO - Scheduler stopped
+2025-11-10 15:47:21,373 - app.main - INFO - Application shutdown complete
+2025-11-10 15:55:01,072 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:55:01,072 - app.main - INFO - Initializing database...
+2025-11-10 15:55:01,080 - app.main - INFO - Database initialized successfully
+2025-11-10 15:55:01,080 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:55:01,081 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:55:01,123 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:55:01,124 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:55:01,128 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:55:01,128 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:55:01,129 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:55:01,130 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:55:01,130 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:58:15,202 - app.main - INFO - Shutting down application...
+2025-11-10 15:58:15,203 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:58:15,203 - app.main - INFO - Scheduler stopped
+2025-11-10 15:58:15,204 - app.main - INFO - Application shutdown complete
+2025-11-10 15:58:18,190 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 15:58:18,190 - app.main - INFO - Initializing database...
+2025-11-10 15:58:18,198 - app.main - INFO - Database initialized successfully
+2025-11-10 15:58:18,199 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:58:18,199 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 15:58:18,228 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 15:58:18,228 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 15:58:18,230 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 15:58:18,231 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 15:58:18,231 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 15:58:18,232 - app.main - INFO - Scheduler started successfully
+2025-11-10 15:58:18,232 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 15:59:52,699 - app.main - INFO - Shutting down application...
+2025-11-10 15:59:52,700 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-10 15:59:52,700 - app.main - INFO - Scheduler stopped
+2025-11-10 15:59:52,700 - app.main - INFO - Application shutdown complete
+2025-11-10 16:07:13,759 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-10 16:07:13,759 - app.main - INFO - Initializing database...
+2025-11-10 16:07:13,767 - app.main - INFO - Database initialized successfully
+2025-11-10 16:07:13,768 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 16:07:13,769 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-10 16:07:13,798 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-10 16:07:13,799 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-10 16:07:13,801 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-10 16:07:13,802 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-10 16:07:13,802 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-10 16:07:13,803 - app.main - INFO - Scheduler started successfully
+2025-11-10 16:07:13,803 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-10 16:19:52,844 - app.api.routes - INFO - Ingestion triggered via API [run_id: c6014686]
+2025-11-10 16:19:52,876 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: e3a98140-f093-48a1-acc0-b338a4d90f5d]
+2025-11-10 16:19:52,878 - app.scheduler.jobs - INFO - Using source ZIP: simple_linkedin_export.zip
+2025-11-10 16:19:52,904 - app.db.repo - INFO - Created ingestion run: e3a98140-f093-48a1-acc0-b338a4d90f5d
+2025-11-10 16:19:52,911 - app.scheduler.jobs - INFO - Created ingestion run record: e3a98140-f093-48a1-acc0-b338a4d90f5d
+2025-11-10 16:19:52,911 - app.connectors.data_export - INFO - Extracting LinkedIn export from: simple_linkedin_export.zip
+2025-11-10 16:19:52,918 - app.connectors.data_export - WARNING - No data found for messages.csv
+2025-11-10 16:19:52,918 - app.connectors.data_export - WARNING - No data found for Connections.csv
+2025-11-10 16:19:52,919 - app.connectors.data_export - WARNING - No data found for Profile.csv
+2025-11-10 16:19:52,920 - app.connectors.data_export - WARNING - No data found for Reactions.csv
+2025-11-10 16:19:52,921 - app.connectors.data_export - WARNING - No data found for Invitations.csv
+2025-11-10 16:19:52,922 - app.connectors.data_export - WARNING - No data found for Contacts.csv
+2025-11-10 16:19:52,922 - app.connectors.data_export - WARNING - No data found for Registration.csv
+2025-11-10 16:19:52,924 - app.connectors.data_export - ERROR - Failed to extract LinkedIn export: No valid LinkedIn data found in ZIP file
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\connectors\data_export.py", line 86, in extract
+    raise ValueError("No valid LinkedIn data found in ZIP file")
+ValueError: No valid LinkedIn data found in ZIP file
+2025-11-10 16:19:52,937 - app.scheduler.jobs - ERROR - Ingestion failed [run_id: e3a98140-f093-48a1-acc0-b338a4d90f5d]: No valid LinkedIn data found in ZIP file
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\scheduler\jobs.py", line 110, in run_ingestion
+    raw_data = connector.extract(source_zip)
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\connectors\data_export.py", line 86, in extract
+    raise ValueError("No valid LinkedIn data found in ZIP file")
+ValueError: No valid LinkedIn data found in ZIP file
+2025-11-10 16:19:52,958 - app.db.repo - INFO - Updated ingestion run 1: status=failed
+2025-11-10 16:26:36,928 - app.api.routes - INFO - Ingestion triggered via API [run_id: 0af881ff]
+2025-11-10 16:26:36,931 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: b762ee4b-4d3b-4d95-82a9-1338c95d3d04]
+2025-11-10 16:26:36,932 - app.scheduler.jobs - INFO - Using source ZIP: simple_linkedin_export.zip
+2025-11-10 16:26:36,946 - app.db.repo - INFO - Created ingestion run: b762ee4b-4d3b-4d95-82a9-1338c95d3d04
+2025-11-10 16:26:36,954 - app.scheduler.jobs - INFO - Created ingestion run record: b762ee4b-4d3b-4d95-82a9-1338c95d3d04
+2025-11-10 16:26:36,955 - app.connectors.data_export - INFO - Extracting LinkedIn export from: simple_linkedin_export.zip
+2025-11-10 16:26:36,960 - app.connectors.data_export - WARNING - No data found for messages.csv
+2025-11-10 16:26:36,961 - app.connectors.data_export - WARNING - No data found for Connections.csv
+2025-11-10 16:26:36,961 - app.connectors.data_export - WARNING - No data found for Profile.csv
+2025-11-10 16:26:36,963 - app.connectors.data_export - WARNING - No data found for Reactions.csv
+2025-11-10 16:26:36,963 - app.connectors.data_export - WARNING - No data found for Invitations.csv
+2025-11-10 16:26:36,964 - app.connectors.data_export - WARNING - No data found for Contacts.csv
+2025-11-10 16:26:36,965 - app.connectors.data_export - WARNING - No data found for Registration.csv
+2025-11-10 16:26:36,966 - app.connectors.data_export - ERROR - Failed to extract LinkedIn export: No valid LinkedIn data found in ZIP file
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\connectors\data_export.py", line 86, in extract
+    raise ValueError("No valid LinkedIn data found in ZIP file")
+ValueError: No valid LinkedIn data found in ZIP file
+2025-11-10 16:26:36,971 - app.scheduler.jobs - ERROR - Ingestion failed [run_id: b762ee4b-4d3b-4d95-82a9-1338c95d3d04]: No valid LinkedIn data found in ZIP file
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\scheduler\jobs.py", line 110, in run_ingestion
+    raw_data = connector.extract(source_zip)
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\connectors\data_export.py", line 86, in extract
+    raise ValueError("No valid LinkedIn data found in ZIP file")
+ValueError: No valid LinkedIn data found in ZIP file
+2025-11-10 16:26:36,983 - app.db.repo - INFO - Updated ingestion run 2: status=failed
+2025-11-10 16:26:38,101 - app.api.routes - INFO - Ingestion triggered via API [run_id: 8223e156]
+2025-11-10 16:26:38,107 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: 6ce1c723-bea1-452e-801d-7f866407385b]
+2025-11-10 16:26:38,109 - app.scheduler.jobs - INFO - Using source ZIP: simple_linkedin_export.zip
+2025-11-10 16:26:38,127 - app.db.repo - INFO - Created ingestion run: 6ce1c723-bea1-452e-801d-7f866407385b
+2025-11-10 16:26:38,135 - app.scheduler.jobs - INFO - Created ingestion run record: 6ce1c723-bea1-452e-801d-7f866407385b
+2025-11-10 16:26:38,137 - app.connectors.data_export - INFO - Extracting LinkedIn export from: simple_linkedin_export.zip
+2025-11-10 16:26:38,140 - app.connectors.data_export - WARNING - No data found for messages.csv
+2025-11-10 16:26:38,141 - app.connectors.data_export - WARNING - No data found for Connections.csv
+2025-11-10 16:26:38,141 - app.connectors.data_export - WARNING - No data found for Profile.csv
+2025-11-10 16:26:38,142 - app.connectors.data_export - WARNING - No data found for Reactions.csv
+2025-11-10 16:26:38,142 - app.connectors.data_export - WARNING - No data found for Invitations.csv
+2025-11-10 16:26:38,142 - app.connectors.data_export - WARNING - No data found for Contacts.csv
+2025-11-10 16:26:38,143 - app.connectors.data_export - WARNING - No data found for Registration.csv
+2025-11-10 16:26:38,144 - app.connectors.data_export - ERROR - Failed to extract LinkedIn export: No valid LinkedIn data found in ZIP file
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\connectors\data_export.py", line 86, in extract
+    raise ValueError("No valid LinkedIn data found in ZIP file")
+ValueError: No valid LinkedIn data found in ZIP file
+2025-11-10 16:26:38,147 - app.scheduler.jobs - ERROR - Ingestion failed [run_id: 6ce1c723-bea1-452e-801d-7f866407385b]: No valid LinkedIn data found in ZIP file
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\scheduler\jobs.py", line 110, in run_ingestion
+    raw_data = connector.extract(source_zip)
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\connectors\data_export.py", line 86, in extract
+    raise ValueError("No valid LinkedIn data found in ZIP file")
+ValueError: No valid LinkedIn data found in ZIP file
+2025-11-10 16:26:38,161 - app.db.repo - INFO - Updated ingestion run 3: status=failed
+2025-11-10 18:00:00,016 - apscheduler.executors.default - INFO - Running job "System Health Check (trigger: cron[hour='*/6'], next run at: 2025-11-11 00:00:00 IST)" (scheduled at 2025-11-10 18:00:00+05:30)
+2025-11-10 18:00:00,028 - apscheduler.executors.default - INFO - Job "System Health Check (trigger: cron[hour='*/6'], next run at: 2025-11-11 00:00:00 IST)" executed successfully

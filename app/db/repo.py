@@ -10,6 +10,7 @@ from typing import Optional, List, Dict, Any, Tuple
 from sqlalchemy import create_engine, select, update, and_, func
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.exc import IntegrityError
+from dateutil import parser
 import hashlib
 import json
 import logging
@@ -332,7 +333,9 @@ class DatabaseRepository:
             if existing.sent_at != sent_at:
                 existing.sent_at = sent_at
                 updated = True
-            
+            if isinstance(sent_at, str):
+                sent_at = parser.parse(sent_at)
+
             if updated:
                 existing.updated_at = datetime.utcnow()
                 session.flush()

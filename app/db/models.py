@@ -233,3 +233,26 @@ def update_conversation_timestamps(mapper, connection, target):
     """
     # Note: This is handled in repo.py to avoid session conflicts
     pass
+
+
+from sqlalchemy import create_engine
+
+def init_db(db_url: str = None):
+    """
+    Initialize database and create all tables.
+    
+    Args:
+        db_url: Database URL (uses settings if not provided)
+    """
+    from app.config import settings
+    
+    if db_url is None:
+        db_url = settings.DATABASE_URL
+    
+    engine = create_engine(
+        db_url,
+        connect_args={"check_same_thread": False} if "sqlite" in db_url else {},
+        echo=False
+    )
+    
+    Base.metadata.create_all(bind=engine)

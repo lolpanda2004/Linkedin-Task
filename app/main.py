@@ -14,7 +14,7 @@ from apscheduler.triggers.cron import CronTrigger
 
 from app.config import settings
 from app.api.routes import router
-# from app.db.models import init_db
+from app.db.models import init_db
 from app.scheduler.jobs import scheduled_ingestion, scheduled_health_check
 
 # Configure logging
@@ -43,7 +43,7 @@ async def lifespan(app: FastAPI):
     
     # Initialize database
     logger.info("Initializing database...")
-    # init_db()
+    init_db()
     logger.info("Database initialized successfully")
     
     # Start scheduler

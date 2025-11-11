@@ -15,6 +15,9 @@ from app.scheduler.jobs import ingestion_job, health_check_job
 from app.services.storage import storage_service
 from app.services.reconcile import reconciliation_service
 from app.db.repo import DatabaseRepository
+from app.config import settings
+
+repository = DatabaseRepository(db_url=settings.DATABASE_URL)
 
 logger = logging.getLogger(__name__)
 
