@@ -151,9 +151,6 @@ class NormalizeService:
     ) -> List[Dict[str, Any]]:
         """
         Normalize participants table.
-        
-        Handles both LinkedIn export format (linkedin_id) and generic format (participant_id).
-        Performs deduplication and validation.
         """
         logger.info(f"Normalizing {len(raw_records)} participants...")
         
@@ -186,15 +183,15 @@ class NormalizeService:
                     self.stats['participants_skipped'] += 1
                     continue
                 
-                # Clean and normalize
+                # *** FIX: Return datetime objects, not ISO strings ***
                 normalized = {
                     'linkedin_id': linkedin_id,
                     'full_name': self._clean_name(full_name),
                     'profile_url': self._clean_url(raw_p.get('profile_url')),
                     'email': self._clean_email(raw_p.get('email') or raw_p.get('email_address')),
                     'headline': self._clean_text(raw_p.get('headline')),
-                    'first_seen': self._parse_date(raw_p.get('first_seen') or raw_p.get('created_at')),
-                    'created_at': datetime.utcnow().isoformat()
+                    'first_seen': self._parse_date_to_datetime(raw_p.get('first_seen') or raw_p.get('created_at')),
+                    'created_at': datetime.utcnow()  # Changed from isoformat
                 }
                 
                 # Deduplication: merge data if linkedin_id already exists
@@ -223,105 +220,101 @@ class NormalizeService:
         
         result = list(participants_map.values())
         logger.info(f"Normalized {len(result)} unique participants "
-                   f"(processed: {self.stats['participants_processed']}, "
-                   f"skipped: {self.stats['participants_skipped']})")
+                f"(processed: {self.stats['participants_processed']}, "
+                f"skipped: {self.stats['participants_skipped']})")
         return result
-    
+        
     def normalize_conversations(
-        self, 
-        raw_records: List[Dict[str, Any]],
-        standalone: bool = True
-    ) -> List[Dict[str, Any]]:
-        """
-        Normalize conversations table.
-        
-        Args:
-            raw_records: List of raw conversation records
-            standalone: If True, uses simple format. If False, uses LinkedIn export format.
-        """
-        logger.info(f"Normalizing {len(raw_records)} conversations...")
-        
-        conversations_map: Dict[str, Dict[str, Any]] = {}
-        
-        for raw_c in raw_records:
-            try:
-                conversation_id = str(self._get_field(raw_c, ['conversation_id', 'id']) or '').strip()
-                
-                if not conversation_id:
-                    logger.warning(f"Skipping conversation with no ID: {raw_c}")
-                    self.stats['validation_errors'] += 1
-                    self.stats['conversations_skipped'] += 1
-                    continue
-                
-                # Get participant IDs (handle both formats)
-                participant_ids = raw_c.get('participant_linkedin_ids') or raw_c.get('participant_ids')
-                
-                if isinstance(participant_ids, str):
-                    participant_ids = [p.strip() for p in participant_ids.split(',') if p.strip()]
-                elif isinstance(participant_ids, list):
-                    participant_ids = [str(p).strip() for p in participant_ids if p]
-                else:
-                    participant_ids = []
-                
-                if not participant_ids:
-                    logger.warning(f"Skipping conversation with no participants: {conversation_id}")
-                    self.stats['validation_errors'] += 1
-                    self.stats['conversations_skipped'] += 1
-                    continue
-                
-                # Determine if group chat
-                unique_participants = list(set(participant_ids))
-                is_group_chat = len(unique_participants) > 2
-                
-                # Get conversation title
-                conversation_title = self._get_field(
-                    raw_c, 
-                    ['conversation_title', 'subject', 'title']
-                )
-                conversation_title = self._clean_text(conversation_title)
-                
-                # Get timestamps
-                created_at = self._parse_date(
-                    self._get_field(raw_c, ['created_at', 'first_message_at', 'date', 'start_date'])
-                )
-                
-                normalized = {
-                    'conversation_id': conversation_id,
-                    'conversation_title': conversation_title,
-                    'is_group_chat': is_group_chat,
-                    'participant_linkedin_ids': unique_participants,
-                    'first_message_at': created_at,
-                    'last_message_at': self._parse_date(raw_c.get('last_message_at')),
-                    'message_count': self._to_int(raw_c.get('message_count')) or 0,
-                    'created_at': created_at or datetime.utcnow().isoformat(),
-                    'updated_at': datetime.utcnow().isoformat()
-                }
-                
-                # Deduplication
-                if conversation_id in conversations_map:
-                    existing = conversations_map[conversation_id]
-                    # Merge participant lists
-                    all_participants = list(set(existing['participant_linkedin_ids']) | set(unique_participants))
-                    normalized['participant_linkedin_ids'] = all_participants
-                    normalized['is_group_chat'] = len(all_participants) > 2
-                    normalized['conversation_title'] = conversation_title or existing['conversation_title']
-                    normalized['created_at'] = existing['created_at']  # Keep original
-                    logger.debug(f"Merged duplicate conversation: {conversation_id}")
-                
-                conversations_map[conversation_id] = normalized
-                self.stats['conversations_processed'] += 1
+            self, 
+            raw_records: List[Dict[str, Any]],
+            standalone: bool = True
+        ) -> List[Dict[str, Any]]:
+            """
+            Normalize conversations table.
+            """
+            logger.info(f"Normalizing {len(raw_records)} conversations...")
             
-            except Exception as e:
-                logger.error(f"Error normalizing conversation: {raw_c}. Error: {str(e)}")
-                self.stats['validation_errors'] += 1
-                self.stats['conversations_skipped'] += 1
-                continue
-        
-        result = list(conversations_map.values())
-        logger.info(f"Normalized {len(result)} unique conversations "
-                   f"(processed: {self.stats['conversations_processed']}, "
-                   f"skipped: {self.stats['conversations_skipped']})")
-        return result
+            conversations_map: Dict[str, Dict[str, Any]] = {}
+            
+            for raw_c in raw_records:
+                try:
+                    conversation_id = str(self._get_field(raw_c, ['conversation_id', 'id']) or '').strip()
+                    
+                    if not conversation_id:
+                        logger.warning(f"Skipping conversation with no ID: {raw_c}")
+                        self.stats['validation_errors'] += 1
+                        self.stats['conversations_skipped'] += 1
+                        continue
+                    
+                    # Get participant IDs (handle both formats)
+                    participant_ids = raw_c.get('participant_linkedin_ids') or raw_c.get('participant_ids')
+                    
+                    if isinstance(participant_ids, str):
+                        participant_ids = [p.strip() for p in participant_ids.split(',') if p.strip()]
+                    elif isinstance(participant_ids, list):
+                        participant_ids = [str(p).strip() for p in participant_ids if p]
+                    else:
+                        participant_ids = []
+                    
+                    if not participant_ids:
+                        logger.warning(f"Skipping conversation with no participants: {conversation_id}")
+                        self.stats['validation_errors'] += 1
+                        self.stats['conversations_skipped'] += 1
+                        continue
+                    
+                    # Determine if group chat
+                    unique_participants = list(set(participant_ids))
+                    is_group_chat = len(unique_participants) > 2
+                    
+                    # Get conversation title
+                    conversation_title = self._get_field(
+                        raw_c, 
+                        ['conversation_title', 'subject', 'title']
+                    )
+                    conversation_title = self._clean_text(conversation_title)
+                    
+                    # *** FIX: Use _parse_date_to_datetime instead of _parse_date ***
+                    created_at = self._parse_date_to_datetime(
+                        self._get_field(raw_c, ['created_at', 'first_message_at', 'date', 'start_date'])
+                    )
+                    
+                    normalized = {
+                        'conversation_id': conversation_id,
+                        'conversation_title': conversation_title,
+                        'is_group_chat': is_group_chat,
+                        'participant_linkedin_ids': unique_participants,
+                        'first_message_at': created_at,  # Now datetime object
+                        'last_message_at': self._parse_date_to_datetime(raw_c.get('last_message_at')),  # Now datetime object
+                        'message_count': self._to_int(raw_c.get('message_count')) or 0,
+                        'created_at': created_at or datetime.utcnow(),  # Changed from isoformat
+                        'updated_at': datetime.utcnow()  # Changed from isoformat
+                    }
+                    
+                    # Deduplication
+                    if conversation_id in conversations_map:
+                        existing = conversations_map[conversation_id]
+                        # Merge participant lists
+                        all_participants = list(set(existing['participant_linkedin_ids']) | set(unique_participants))
+                        normalized['participant_linkedin_ids'] = all_participants
+                        normalized['is_group_chat'] = len(all_participants) > 2
+                        normalized['conversation_title'] = conversation_title or existing['conversation_title']
+                        normalized['created_at'] = existing['created_at']  # Keep original
+                        logger.debug(f"Merged duplicate conversation: {conversation_id}")
+                    
+                    conversations_map[conversation_id] = normalized
+                    self.stats['conversations_processed'] += 1
+                
+                except Exception as e:
+                    logger.error(f"Error normalizing conversation: {raw_c}. Error: {str(e)}")
+                    self.stats['validation_errors'] += 1
+                    self.stats['conversations_skipped'] += 1
+                    continue
+            
+            result = list(conversations_map.values())
+            logger.info(f"Normalized {len(result)} unique conversations "
+                    f"(processed: {self.stats['conversations_processed']}, "
+                    f"skipped: {self.stats['conversations_skipped']})")
+            return result
     
     def normalize_messages(
         self,
@@ -557,10 +550,10 @@ class NormalizeService:
         return normalized
     
     def _build_conversation_participants(
-        self,
-        normalized_conversations: List[Dict[str, Any]],
-        normalized_participants: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+    self,
+    normalized_conversations: List[Dict[str, Any]],
+    normalized_participants: List[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
         """
         Build junction table data linking conversations to participants.
         """
@@ -576,19 +569,20 @@ class NormalizeService:
             for participant_id in participant_ids:
                 if participant_id not in valid_participant_ids:
                     logger.warning(f"Skipping invalid participant {participant_id} "
-                                 f"in conversation {conversation_id}")
+                                f"in conversation {conversation_id}")
                     continue
                 
+                # *** FIX: Use datetime object, not string ***
                 junction_data.append({
                     'conversation_id': conversation_id,
                     'participant_linkedin_id': participant_id,
-                    'joined_at': conv.get('first_message_at'),
+                    'joined_at': conv.get('first_message_at'),  # Already datetime from fix above
                     'left_at': None
                 })
         
         logger.info(f"Built {len(junction_data)} conversation-participant links")
         return junction_data
-    
+
     def _update_conversation_timestamps(
         self,
         conversations: List[Dict[str, Any]],

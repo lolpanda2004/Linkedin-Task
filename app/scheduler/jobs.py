@@ -176,16 +176,30 @@ class IngestionJob:
             
             # Stage 8: Create output package
             run_status["stage"] = "packaging"
+
+            # Filter to only include table data (lists of dicts)
+            package_data = {}
+            for key, value in normalized_data.items():
+                # Only include lists of dictionaries (actual table data)
+                if isinstance(value, list) and value and isinstance(value[0], dict):
+                    package_data[key] = value
+                elif isinstance(value, list) and not value:
+                    # Include empty lists (empty tables)
+                    package_data[key] = value
+
+            logger.info(f"Packaging tables: {list(package_data.keys())}")
+
             output_zip = zip_package_service.create_package(
-                data=normalized_data,
+                data=package_data,
                 run_id=run_id,
                 metadata={
                     "source_file": source_zip.name,
                     "reconciliation": reconciliation_report,
-                    "inserted_counts": inserted_counts
+                    "inserted_counts": inserted_counts,
+                    "normalization_stats": normalized_data.get('stats', {}),
+                    "source_metadata": normalized_data.get('metadata', {})
                 }
             )
-            
             # Save output package
             saved_output = storage_service.save_output_zip(output_zip, run_id)
             run_status["stats"]["output_file"] = saved_output.name
@@ -306,17 +320,45 @@ class IngestionJob:
         logger.info("Inserting conversations...")
         conversation_map = {}  # conversation_id -> db_id
         
+        from datetime import datetime
+
         for conv_data in normalized_data.get('conversations', []):
+            # Ensure datetime objects, not strings
+            first_msg_at = conv_data.get('first_message_at')
+            last_msg_at = conv_data.get('last_message_at')
+            
+            # Convert strings to datetime if needed
+            if isinstance(first_msg_at, str):
+                try:
+                    first_msg_at = datetime.fromisoformat(first_msg_at.replace('Z', '+00:00'))
+                except:
+                    first_msg_at = None
+            
+            if isinstance(last_msg_at, str):
+                try:
+                    last_msg_at = datetime.fromisoformat(last_msg_at.replace('Z', '+00:00'))
+                except:
+                    last_msg_at = None
+            
             conversation = self.repo.upsert_conversation(
                 session=session,
                 conversation_id=conv_data['conversation_id'],
                 conversation_title=conv_data.get('conversation_title'),
                 is_group_chat=conv_data.get('is_group_chat', False),
-                first_message_at=conv_data.get('first_message_at'),
-                last_message_at=conv_data.get('last_message_at')
+                first_message_at=first_msg_at,
+                last_message_at=last_msg_at
             )
-            conversation_map[conversation.conversation_id] = conversation.id
-            inserted_counts['conversations'] += 1
+        # for conv_data in normalized_data.get('conversations', []):
+        #     conversation = self.repo.upsert_conversation(
+        #         session=session,
+        #         conversation_id=conv_data['conversation_id'],
+        #         conversation_title=conv_data.get('conversation_title'),
+        #         is_group_chat=conv_data.get('is_group_chat', False),
+        #         first_message_at=conv_data.get('first_message_at'),
+        #         last_message_at=conv_data.get('last_message_at')
+        #     )
+        #     conversation_map[conversation.conversation_id] = conversation.id
+        #     inserted_counts['conversations'] += 1
         
         logger.info(f"Inserted {inserted_counts['conversations']} conversations")
         

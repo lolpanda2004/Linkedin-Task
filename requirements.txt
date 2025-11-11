@@ -18,3 +18,4 @@ pyjwt==2.9.0
 aiosmtplib==3.0.1
 sqlite-utils==3.36
 cryptography==43.0.1
+sqlalchemy
