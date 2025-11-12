@@ -216,18 +216,24 @@ class IngestionJob:
             
             # Stage 10: Send email
             run_status["stage"] = "emailing"
-            if settings.EMAIL_ENABLED and settings.RECIPIENT_EMAILS:
+            logger.info(f"EMAIL_ENABLED: {settings.EMAIL_ENABLED}")
+            logger.info(f"RECIPIENT_EMAILS: {settings.recipient_emails_list}")
+            logger.info(f"Emailer service enabled: {emailer_service.enabled}")
+
+            if settings.EMAIL_ENABLED and settings.recipient_emails_list and emailer_service.enabled:
+                logger.info("Attempting to send email...")
                 email_sent = emailer_service.send_data_package(
-                    to_emails=settings.RECIPIENT_EMAILS,
+                    to_emails=settings.recipient_emails_list,  # Changed
                     zip_path=saved_output,
                     run_id=run_id,
                     record_counts=inserted_counts
                 )
                 run_status["stats"]["email_sent"] = email_sent
+                logger.info(f"Email send result: {email_sent}")
             else:
                 run_status["stats"]["email_sent"] = False
-                logger.info("Email disabled or no recipients configured")
-            
+                logger.warning(f"Email NOT sent - EMAIL_ENABLED={settings.EMAIL_ENABLED}, recipients={len(settings.recipient_emails_list)}, service_enabled={emailer_service.enabled}")
+                        
             # Success!
             run_status["status"] = "SUCCESS"
             run_status["stage"] = "completed"
@@ -259,9 +265,10 @@ class IngestionJob:
             session.rollback()
             
             # Send error notification
-            if settings.EMAIL_ENABLED and settings.RECIPIENT_EMAILS:
+            if settings.EMAIL_ENABLED and settings.recipient_emails_list and emailer_service.enabled:
+                logger.info("Sending error notification email...")
                 emailer_service.send_error_notification(
-                    to_emails=settings.RECIPIENT_EMAILS,
+                    to_emails=settings.recipient_emails_list,  # Changed
                     error_message=str(e),
                     run_id=run_id
                 )

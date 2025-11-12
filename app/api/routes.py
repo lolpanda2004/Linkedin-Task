@@ -328,7 +328,7 @@ async def get_config():
         "smtp_host": settings.SMTP_HOST,
         "smtp_port": settings.SMTP_PORT,
         "from_email": settings.FROM_EMAIL,
-        "recipient_count": len(settings.RECIPIENT_EMAILS) if settings.RECIPIENT_EMAILS else 0,
+        "recipient_count": len(settings.recipient_emails_list) if settings.recipient_emails_list else 0,
         "delete_incoming_after_processing": settings.DELETE_INCOMING_AFTER_PROCESSING,
         "database_url": settings.DATABASE_URL.split("@")[-1] if "@" in settings.DATABASE_URL else "sqlite",
         "log_level": settings.LOG_LEVEL

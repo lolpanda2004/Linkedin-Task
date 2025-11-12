@@ -57,7 +57,7 @@ async def lifespan(app: FastAPI):
             trigger=CronTrigger(
                 day_of_week=settings.SCHEDULE_DAY_OF_WEEK,
                 hour=settings.SCHEDULE_HOUR,
-                minute=settings.SCHEDULE_MINUTE,
+                minute=2, #settings.SCHEDULE_MINUTE
                 timezone=settings.TIMEZONE
             ),
             id='weekly_ingestion',

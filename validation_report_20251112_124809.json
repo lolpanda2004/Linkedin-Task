@@ -1,0 +1,57 @@
+{
+  "tests": [
+    {
+      "name": "ZIP File Structure",
+      "status": "PASS",
+      "message": "ZIP structure valid"
+    },
+    {
+      "name": "Data Extraction",
+      "status": "PASS",
+      "message": "Extracted 18605 total records from 6 tables"
+    },
+    {
+      "name": "Data Normalization",
+      "status": "WARN",
+      "message": "20 validation errors during normalization"
+    },
+    {
+      "name": "Database Connection",
+      "status": "PASS",
+      "message": "Database connection successful"
+    },
+    {
+      "name": "Participant Validation",
+      "status": "PASS",
+      "message": "All 811 participants found in database"
+    },
+    {
+      "name": "Conversation Validation",
+      "status": "PASS",
+      "message": "All 767 conversations found in database"
+    },
+    {
+      "name": "Message Validation",
+      "status": "FAIL",
+      "message": "Only 0/100 messages found"
+    },
+    {
+      "name": "Referential Integrity",
+      "status": "PASS",
+      "message": "All referential integrity checks passed"
+    },
+    {
+      "name": "Data Quality",
+      "status": "PASS",
+      "message": "Data quality checks passed"
+    },
+    {
+      "name": "Count Reconciliation",
+      "status": "FAIL",
+      "message": "Database has fewer records than source"
+    }
+  ],
+  "passed": 7,
+  "failed": 2,
+  "warnings": 1
+}

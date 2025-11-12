@@ -1,3 +1,4 @@
+# app/services/emailer.py
 """
 app/services/emailer.py
 
@@ -26,6 +27,7 @@ class EmailerService:
     
     def __init__(self):
         """Initialize emailer with SMTP configuration from settings."""
+        # Load all settings first
         self.smtp_host = settings.SMTP_HOST
         self.smtp_port = settings.SMTP_PORT
         self.smtp_user = settings.SMTP_USER
@@ -34,9 +36,26 @@ class EmailerService:
         self.use_tls = settings.SMTP_USE_TLS
         self.enabled = settings.EMAIL_ENABLED
         
-        # Validate configuration
+        # Debug logging
+        logger.info("=" * 60)
+        logger.info("EMAIL SERVICE INITIALIZATION")
+        logger.info("=" * 60)
+        logger.info(f"EMAIL_ENABLED from settings: {settings.EMAIL_ENABLED}")
+        logger.info(f"SMTP_HOST: {self.smtp_host}")
+        logger.info(f"SMTP_PORT: {self.smtp_port}")
+        logger.info(f"SMTP_USER: {self.smtp_user}")
+        logger.info(f"FROM_EMAIL: {self.from_email}")
+        logger.info(f"SMTP_PASSWORD set: {bool(self.smtp_password)}")
+        logger.info(f"RECIPIENT_EMAILS: {settings.RECIPIENT_EMAILS}")
+        logger.info(f"Parsed recipients: {settings.recipient_emails_list}")
+        logger.info("=" * 60)
+        
+        # Only validate if email is enabled
         if self.enabled:
+            logger.info("Email is ENABLED - running validation...")
             self._validate_config()
+        else:
+            logger.warning("EMAIL_ENABLED=false in .env - email disabled")
     
     def _validate_config(self) -> None:
         """Validate that required email configuration is present."""
@@ -49,10 +68,28 @@ class EmailerService:
         }
         
         missing = [key for key, value in required_fields.items() if not value]
+        
         if missing:
-            logger.warning(f"Missing email configuration: {', '.join(missing)}")
-            logger.warning("Email delivery will be disabled")
+            logger.error("=" * 60)
+            logger.error("EMAIL CONFIGURATION ERROR")
+            logger.error("=" * 60)
+            logger.error(f"Missing required fields: {', '.join(missing)}")
+            for field in missing:
+                logger.error(f"  ❌ {field} is empty or not set")
+            logger.error("=" * 60)
+            logger.error("Email will be DISABLED")
+            logger.error("=" * 60)
             self.enabled = False
+        else:
+            logger.info("=" * 60)
+            logger.info("EMAIL CONFIGURATION VALIDATED")
+            logger.info("=" * 60)
+            logger.info(f"✓ SMTP Server: {self.smtp_host}:{self.smtp_port}")
+            logger.info(f"✓ SMTP User: {self.smtp_user}")
+            logger.info(f"✓ From: {self.from_email}")
+            logger.info(f"✓ Recipients: {len(settings.recipient_emails_list)} configured")
+            logger.info("✓ Email service is READY")
+            logger.info("=" * 60)
     
     def send_data_package(
         self,

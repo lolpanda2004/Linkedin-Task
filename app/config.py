@@ -1,19 +1,16 @@
+# app/config.py
 """
 app/config.py
-
 Configuration management using environment variables.
 Loads settings from .env file and provides typed configuration objects.
 """
-
 import os
 from pathlib import Path
 from typing import List, Optional
 from datetime import datetime
 import pytz
-
 from pydantic_settings import BaseSettings
-from pydantic import Field, validator
-
+from pydantic import Field, field_validator
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
@@ -59,10 +56,11 @@ class Settings(BaseSettings):
     SCHEDULER_ENABLED: bool = Field(default=True, description="Enable automatic scheduled ingestion")
     SCHEDULE_DAY_OF_WEEK: str = Field(default="mon", description="Day of week for ingestion (mon-sun)")
     SCHEDULE_HOUR: int = Field(default=9, ge=0, le=23, description="Hour for ingestion (0-23)")
-    SCHEDULE_MINUTE: int = Field(default=0, ge=0, le=59, description="Minute for ingestion (SCHEDULE_MINUTE-59)")
+    SCHEDULE_MINUTE: int = Field(default=0, ge=0, le=59, description="Minute for ingestion (0-59)")
     TIMEZONE: str = Field(default="UTC", description="Timezone for scheduler")
     
-    @validator('TIMEZONE')
+    @field_validator('TIMEZONE')
+    @classmethod
     def validate_timezone(cls, v):
         """Validate timezone string."""
         try:
@@ -71,7 +69,8 @@ class Settings(BaseSettings):
         except pytz.exceptions.UnknownTimeZoneError:
             raise ValueError(f"Invalid timezone: {v}")
     
-    @validator('SCHEDULE_DAY_OF_WEEK')
+    @field_validator('SCHEDULE_DAY_OF_WEEK')
+    @classmethod
     def validate_day_of_week(cls, v):
         """Validate day of week."""
         valid_days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
@@ -83,20 +82,13 @@ class Settings(BaseSettings):
     
     # ==================== EMAIL ====================
     EMAIL_ENABLED: bool = Field(default=False, description="Enable email notifications")
-    SMTP_HOST: str = Field(default="smtp.gmail.com", description="SMTP server host")
+    SMTP_HOST: str = Field(default="", description="SMTP server host")
     SMTP_PORT: int = Field(default=587, description="SMTP server port")
     SMTP_USER: str = Field(default="", description="SMTP username/email")
     SMTP_PASSWORD: str = Field(default="", description="SMTP password/app password")
     SMTP_USE_TLS: bool = Field(default=True, description="Use TLS for SMTP")
     FROM_EMAIL: str = Field(default="", description="From email address")
-    RECIPIENT_EMAILS: List[str] = Field(default_factory=list, description="Comma-separated recipient emails")
-    
-    @validator('RECIPIENT_EMAILS', pre=True)
-    def parse_recipient_emails(cls, v):
-        """Parse comma-separated email list."""
-        if isinstance(v, str):
-            return [email.strip() for email in v.split(',') if email.strip()]
-        return v
+    RECIPIENT_EMAILS: str = Field(default="", description="Comma-separated recipient emails")
     
     # ==================== PROCESSING ====================
     DELETE_INCOMING_AFTER_PROCESSING: bool = Field(
@@ -113,42 +105,51 @@ class Settings(BaseSettings):
     )
     
     # ==================== CORS ====================
-    CORS_ORIGINS: List[str] = Field(
-        default_factory=lambda: ["http://localhost:3000", "http://localhost:8000"],
-        description="Allowed CORS origins"
+    CORS_ORIGINS: str = Field(
+        default="http://localhost:3000,http://localhost:8000",
+        description="Comma-separated CORS origins"
     )
-    
-    @validator('CORS_ORIGINS', pre=True)
-    def parse_cors_origins(cls, v):
-        """Parse comma-separated CORS origins."""
-        if isinstance(v, str):
-            return [origin.strip() for origin in v.split(',') if origin.strip()]
-        return v
     
     # ==================== RETRY LOGIC ====================
     MAX_RETRIES: int = Field(default=3, description="Max retries for failed operations")
     RETRY_DELAY_SECONDS: int = Field(default=5, description="Delay between retries in seconds")
     
     # ==================== LINKEDIN SPECIFIC ====================
-    # Fields expected in LinkedIn export (for validation)
-    EXPECTED_TABLES: List[str] = Field(
-        default_factory=lambda: [
-            "participants",
-            "conversations",
-            "messages",
-            "connections",
-            "profile",
-            "reactions"
-        ],
-        description="Expected table names in LinkedIn export"
+    EXPECTED_TABLES: str = Field(
+        default="participants,conversations,messages,connections,profile,reactions",
+        description="Comma-separated expected table names in LinkedIn export"
     )
     
-    class Config:
-        """Pydantic config."""
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = True
-        
+    model_config = {
+        "env_file": ".env",
+        "env_file_encoding": "utf-8",
+        "case_sensitive": False,
+        "extra": "ignore"
+    }
+    
+    # ==================== COMPUTED PROPERTIES ====================
+    
+    @property
+    def recipient_emails_list(self) -> List[str]:
+        """Parse RECIPIENT_EMAILS into list."""
+        if not self.RECIPIENT_EMAILS:
+            return []
+        return [email.strip() for email in self.RECIPIENT_EMAILS.split(',') if email.strip()]
+    
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Parse CORS_ORIGINS into list."""
+        if not self.CORS_ORIGINS:
+            return ["http://localhost:3000", "http://localhost:8000"]
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(',') if origin.strip()]
+    
+    @property
+    def expected_tables_list(self) -> List[str]:
+        """Parse EXPECTED_TABLES into list."""
+        if not self.EXPECTED_TABLES:
+            return ["participants", "conversations", "messages", "connections", "profile", "reactions"]
+        return [table.strip() for table in self.EXPECTED_TABLES.split(',') if table.strip()]
+    
     # ==================== UTILITY METHODS ====================
     
     def get_current_timestamp(self) -> str:
@@ -204,7 +205,7 @@ class Settings(BaseSettings):
         if missing:
             return False, f"Missing required email configuration: {', '.join(missing)}"
         
-        if not self.RECIPIENT_EMAILS:
+        if not self.recipient_emails_list:
             return False, "No recipient emails configured (RECIPIENT_EMAILS)"
         
         return True, None
@@ -227,7 +228,6 @@ class Settings(BaseSettings):
             f"EMAIL_ENABLED={self.EMAIL_ENABLED}, "
             f"SCHEDULER_ENABLED={self.SCHEDULER_ENABLED})"
         )
-
 
 # Singleton instance
 settings = Settings()
