@@ -35777,3 +35777,21 @@ AttributeError: 'DatabaseRepository' object has no attribute 'get_table_counts'
 2025-11-12 12:38:41,902 - apscheduler.scheduler - INFO - Scheduler has been shut down
 2025-11-12 12:38:41,903 - app.main - INFO - Scheduler stopped
 2025-11-12 12:38:41,904 - app.main - INFO - Application shutdown complete
+2025-11-12 12:38:47,741 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-12 12:38:47,743 - app.main - INFO - Initializing database...
+2025-11-12 12:38:47,777 - app.main - INFO - Database initialized successfully
+2025-11-12 12:38:47,780 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-12 12:38:47,781 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-12 12:38:47,857 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-12 12:38:47,858 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-12 12:38:47,866 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-12 12:38:47,868 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-12 12:38:47,869 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-12 12:38:47,872 - app.main - INFO - Scheduler started successfully
+2025-11-12 12:38:47,874 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-12 13:19:48,934 - app.api.routes - ERROR - Failed to get database stats: 'DatabaseRepository' object has no attribute 'get_table_counts'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\api\routes.py", line 277, in get_database_stats
+    stats = repository.get_table_counts()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DatabaseRepository' object has no attribute 'get_table_counts'
