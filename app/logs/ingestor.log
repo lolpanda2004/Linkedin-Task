@@ -35295,3 +35295,131 @@ AttributeError: 'DatabaseRepository' object has no attribute 'vacuum'
 2025-11-11 11:24:11,964 - app.main - INFO - Initializing database...
 2025-11-11 11:24:49,606 - app.main - INFO - Starting LinkedIn Ingestor application...
 2025-11-11 11:24:49,607 - app.main - INFO - Initializing database...
+2025-11-11 11:25:13,880 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-11 11:25:13,880 - app.main - INFO - Initializing database...
+2025-11-11 11:25:13,890 - app.main - INFO - Database initialized successfully
+2025-11-11 11:25:13,895 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 11:25:13,896 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-11 11:25:13,925 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 11:25:13,926 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-11 11:25:13,929 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-11 11:25:13,929 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-11 11:25:13,930 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-11 11:25:13,931 - app.main - INFO - Scheduler started successfully
+2025-11-11 11:25:13,931 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-11 11:28:38,099 - app.api.routes - INFO - Ingestion triggered via API [run_id: b76eb78c]
+2025-11-11 11:28:38,113 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: 8ed410d0-e32e-4f1e-9dd4-6a53689da2ab]
+2025-11-11 11:28:38,114 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 11:28:38,182 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 11:32:38,221 - app.api.routes - INFO - Ingestion triggered via API [run_id: 73b58eb1]
+2025-11-11 11:32:38,223 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: acf075ae-f91d-45e4-b618-cf072f7291be]
+2025-11-11 11:32:38,224 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 11:32:38,230 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 11:33:15,782 - app.api.routes - INFO - Ingestion triggered via API [run_id: fe91d0fb]
+2025-11-11 11:33:15,784 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: 45f15230-3c28-416d-a8ff-d6fe4282feac]
+2025-11-11 11:33:15,785 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 11:33:15,792 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 11:38:18,066 - app.api.routes - ERROR - Failed to vacuum database: 'DatabaseRepository' object has no attribute 'vacuum'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\api\routes.py", line 299, in vacuum_database
+    repository.vacuum()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'DatabaseRepository' object has no attribute 'vacuum'
+2025-11-11 12:00:00,014 - apscheduler.executors.default - INFO - Running job "System Health Check (trigger: cron[hour='*/6'], next run at: 2025-11-11 18:00:00 IST)" (scheduled at 2025-11-11 12:00:00+05:30)
+2025-11-11 12:00:00,024 - apscheduler.executors.default - INFO - Job "System Health Check (trigger: cron[hour='*/6'], next run at: 2025-11-11 18:00:00 IST)" executed successfully
+2025-11-11 12:52:20,459 - app.api.routes - INFO - Ingestion triggered via API [run_id: b3641a78]
+2025-11-11 12:52:20,466 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: 2b6b4d17-e6b2-4a2a-b925-fc5c73d97ba9]
+2025-11-11 12:52:20,468 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 12:52:20,481 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 12:52:35,703 - app.api.routes - INFO - Ingestion triggered via API [run_id: 62121095]
+2025-11-11 12:52:35,706 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: aad5409c-4213-447b-957e-47471c3f470f]
+2025-11-11 12:52:35,707 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 12:52:35,718 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 12:52:46,351 - app.api.routes - INFO - Ingestion triggered via API [run_id: 001f12fe]
+2025-11-11 12:52:46,354 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: 5337debd-6227-4838-a1b7-6062a0512540]
+2025-11-11 12:52:46,355 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 12:52:46,366 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 13:02:58,387 - app.main - INFO - Shutting down application...
+2025-11-11 13:02:58,389 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-11 13:02:58,391 - app.main - INFO - Scheduler stopped
+2025-11-11 13:02:58,391 - app.main - INFO - Application shutdown complete
+2025-11-11 13:09:37,940 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-11 13:09:37,941 - app.main - INFO - Initializing database...
+2025-11-11 13:09:37,950 - app.main - INFO - Database initialized successfully
+2025-11-11 13:09:37,950 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:09:37,951 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-11 13:09:37,982 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:09:37,982 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-11 13:09:37,985 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-11 13:09:37,985 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-11 13:09:37,985 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-11 13:09:37,987 - app.main - INFO - Scheduler started successfully
+2025-11-11 13:09:37,988 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-11 13:10:26,785 - app.main - INFO - Shutting down application...
+2025-11-11 13:10:26,785 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-11 13:10:26,787 - app.main - INFO - Scheduler stopped
+2025-11-11 13:10:26,787 - app.main - INFO - Application shutdown complete
+2025-11-11 13:10:29,159 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-11 13:10:29,160 - app.main - INFO - Initializing database...
+2025-11-11 13:10:29,168 - app.main - INFO - Database initialized successfully
+2025-11-11 13:10:29,169 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:10:29,169 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-11 13:10:29,197 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:10:29,198 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-11 13:10:29,202 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-11 13:10:29,202 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-11 13:10:29,202 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-11 13:10:29,204 - app.main - INFO - Scheduler started successfully
+2025-11-11 13:10:29,204 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-11 13:12:08,319 - app.api.routes - INFO - Ingestion triggered via API [run_id: 8112e5e3]
+2025-11-11 13:12:08,351 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: d4b5f7aa-8bb3-4ab6-97bc-8e9ce249236e]
+2025-11-11 13:12:08,353 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 13:12:08,369 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)
+2025-11-11 13:13:21,441 - app.api.routes - ERROR - Failed to vacuum database: 'DatabaseRepository' object has no attribute 'vacuum'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\api\routes.py", line 299, in vacuum_database
+    repository.vacuum()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'DatabaseRepository' object has no attribute 'vacuum'
+2025-11-11 13:13:29,419 - app.api.routes - ERROR - Failed to get database stats: 'DatabaseRepository' object has no attribute 'get_table_counts'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Linkedin\linkedin-ingestor\app\api\routes.py", line 277, in get_database_stats
+    stats = repository.get_table_counts()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DatabaseRepository' object has no attribute 'get_table_counts'
+2025-11-11 13:18:55,448 - app.main - INFO - Shutting down application...
+2025-11-11 13:18:55,449 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-11 13:18:55,450 - app.main - INFO - Scheduler stopped
+2025-11-11 13:18:55,451 - app.main - INFO - Application shutdown complete
+2025-11-11 13:18:59,357 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-11 13:18:59,359 - app.main - INFO - Initializing database...
+2025-11-11 13:18:59,386 - app.main - INFO - Database initialized successfully
+2025-11-11 13:18:59,389 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:18:59,390 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-11 13:18:59,462 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:18:59,463 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-11 13:18:59,471 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-11 13:18:59,472 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-11 13:18:59,473 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-11 13:18:59,476 - app.main - INFO - Scheduler started successfully
+2025-11-11 13:18:59,477 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-11 13:19:12,061 - app.main - INFO - Shutting down application...
+2025-11-11 13:19:12,061 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-11-11 13:19:12,063 - app.main - INFO - Scheduler stopped
+2025-11-11 13:19:12,063 - app.main - INFO - Application shutdown complete
+2025-11-11 13:19:14,771 - app.main - INFO - Starting LinkedIn Ingestor application...
+2025-11-11 13:19:14,771 - app.main - INFO - Initializing database...
+2025-11-11 13:19:14,779 - app.main - INFO - Database initialized successfully
+2025-11-11 13:19:14,779 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:19:14,780 - app.main - INFO - Scheduled weekly ingestion: mon at 09:00 UTC
+2025-11-11 13:19:14,812 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-11-11 13:19:14,812 - app.main - INFO - Scheduled health checks: every 6 hours
+2025-11-11 13:19:14,816 - apscheduler.scheduler - INFO - Added job "Weekly LinkedIn Data Ingestion" to job store "default"
+2025-11-11 13:19:14,816 - apscheduler.scheduler - INFO - Added job "System Health Check" to job store "default"
+2025-11-11 13:19:14,816 - apscheduler.scheduler - INFO - Scheduler started
+2025-11-11 13:19:14,817 - app.main - INFO - Scheduler started successfully
+2025-11-11 13:19:14,818 - app.main - INFO - Application started - API available at http://0.0.0.0:8000
+2025-11-11 13:21:51,936 - app.api.routes - INFO - Ingestion triggered via API [run_id: 51136e85]
+2025-11-11 13:21:51,962 - app.scheduler.jobs - INFO - Starting ingestion job [run_id: f9011319-82de-436a-aad7-0130b8697b2b]
+2025-11-11 13:21:51,963 - app.scheduler.jobs - INFO - Using source ZIP: Linkedin_export.zip
+2025-11-11 13:21:52,049 - app.scheduler.jobs - WARNING - ZIP already ingested: Linkedin_export.zip (hash: 34c83334...)

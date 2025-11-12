@@ -79,6 +79,7 @@ class Settings(BaseSettings):
         if v_lower not in valid_days:
             raise ValueError(f"Invalid day of week: {v}. Must be one of {valid_days}")
         return v_lower
+        
     
     # ==================== EMAIL ====================
     EMAIL_ENABLED: bool = Field(default=False, description="Enable email notifications")
